@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from . models import student
-from .forms import RegisterModel,LoginForm, MoreInfo
+from .forms import RegisterModel,LoginForm, StudentInfo, JudgeInfo
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
 from .models import student as User
@@ -25,7 +25,7 @@ def index(request):
         if user is not None:
             auth.login(request,user)
             if user.activated:
-                return HttpResponseRedirect('/profile_page/')
+                return HttpResponseRedirect('/user/student_details')
             else:
                 return HttpResponseRedirect('/home/personal_info/')
     context={"form":form, "formin":formin}
@@ -37,14 +37,22 @@ def user_logout(request):
     return HttpResponseRedirect('/home/')
 
 def personal_info(request):
-    form = MoreInfo(request.POST or None)
+    if request.user.judge:
+        form = JudgeInfo(request.POST or None, request.FILES or None)
+    else:
+        form = StudentInfo(request.POST or None, request.FILES or None)
     if form.is_valid():
         request.user.location = form.cleaned_data.get("location")
         request.user.degree = form.cleaned_data.get("degree")
-        request.user.college = form.cleaned_data.get("college")
-        request.user.year = form.cleaned_data.get("year")
         request.user.dob = form.cleaned_data.get("dob")
         request.user.activated = True
+        request.user.profile_picture = form.cleaned_data.get("profile_picture")
+        if request.user.judge:
+            request.user.qualification = form.cleaned_data.get("designation")
+            request.user.industry_exp = form.cleaned_data.get("industry_exp")
+        else:
+            request.user.college = form.cleaned_data.get("college")
+            request.user.year = form.cleaned_data.get("year")
         request.user.save()
         return HttpResponseRedirect('/profile_page/')
     context = {"form":form}

@@ -35,8 +35,15 @@ DOY = ('1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987',
 
 
 
-class MoreInfo(forms.ModelForm):
+class StudentInfo(forms.ModelForm):
     dob = forms.DateField(widget=SelectDateWidget(years = DOY))
     class Meta:
         model = student
-        fields = ['location','degree', 'college', 'year','dob',]
+        fields = ['profile_picture','location','degree', 'college', 'year','dob',]
+
+
+class JudgeInfo(forms.ModelForm):
+    dob = forms.DateField(widget=SelectDateWidget(years = DOY))
+    class Meta:
+        model = student
+        fields = ['profile_picture','location','degree', 'designation','dob', 'industry_exp','website',]

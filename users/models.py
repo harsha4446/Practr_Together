@@ -30,6 +30,8 @@ class CustomUserManager(BaseUserManager):
         return new_user
 
 
+def upload_loction(object, filename):
+    return "%s/%s" %(object.email , filename)
 
 class student(AbstractBaseUser):
     email = models.EmailField(max_length=100,unique=True)
@@ -39,17 +41,22 @@ class student(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    experience = models.IntegerField(default=0)
-    location = models.CharField(max_length=100,default='')
-    degree = models.CharField(max_length=100,default='')
     activated = models.BooleanField(default=False)
-    college = models.CharField(max_length=150,default='')
-    year = models.CharField(max_length=10,choices=(('First','First'),
-                                                   ('Second','Second'),
-                                                   ('Third','Third')),
-                            default='First')
+    judge = models.BooleanField(default=False)
+    designation = models.CharField(max_length=100,default='')
+    industry_exp = models.PositiveSmallIntegerField(default=0)
+    about = models.CharField(max_length=500,default='')
     dob = models.DateField(default=datetime.date.today)
-
+    experience = models.PositiveSmallIntegerField(default=0)
+    location = models.CharField(max_length=100, default='')
+    degree = models.CharField(max_length=100, default='')
+    college = models.CharField(max_length=150, default='')
+    year = models.CharField(max_length=10, choices=(('First', 'First'),
+                                                    ('Second', 'Second'),
+                                                    ('Third', 'Third')),
+                            default='First')
+    website = models.EmailField(default='dummy@dummy.com')
+    profile_picture = models.ImageField(upload_to=upload_loction,null=True,blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name','phoneno']
