@@ -103,18 +103,21 @@
           <div class="col-md-12">
             <div class="map-toggleButton"> <i class="fa fa-bars"></i> </div>
             <div class="map-search-fields">
+                <form method="post" action="">
+                    {% csrf_token %}
               <div class="field">
-                <input type="text" placeholder="Keyword">
+                {{ name.as_table}}
               </div>
               <div class="field">
-                <input type="text" placeholder="Location">
+                {{ email.as_table }}
               </div>
               <div class="field custom-select-box">
-                <input type="text" placeholder="Subject Matter Expertise">
+                {{ college.as_table }}
               </div>
-            </div>
-            <div class="search-button">
-              <button>Search Judges</button>
+              <div class="search-button">
+                <button type="submit">Search Students</button>
+              </div>
+                </form>
             </div>
           </div>
         </div>
@@ -127,10 +130,10 @@
     <div class="container pb30">
       <h3>Students</h3>
         {% for user in all_users %}
-            <div class="row">
+            <div class="column">
                 <div class="col-sm-3">
                     <div class="uou-block-6a"> <img src="{{ user.profile_picture.url }}" alt="">
-                        <h6>{{ user.name }} <span>{{ user.college }}</span></h6>
+                        <h6>{{ user.name }}<span>{{ user.college }}</span></h6>
                         <p><i class="fa fa-map-marker"></i>{{ user.location }}</p>
                     </div>
                 </div>

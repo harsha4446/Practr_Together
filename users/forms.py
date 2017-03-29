@@ -16,16 +16,6 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    def clean(self, *args,**kwargs):
-        username = self.cleaned_data.get("username")
-        password = self.cleaned_data.get("password")
-        if username and password:
-            user = authenticate(username=username,password=password)
-            if not user:
-               raise forms.ValidationError("Incorrent Username or Password")
-            if not user.check_password(password):
-              raise forms.ValidationError("Incorrent Password")
-
 
 DOY = ('1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987',
        '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995',
