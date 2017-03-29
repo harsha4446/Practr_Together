@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 
+#delete later
+
 def judge_page(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect('/home/')
