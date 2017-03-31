@@ -17,7 +17,7 @@ def student_list(request):
 
     if formname.is_valid()and formname.cleaned_data['name'] != '':
         name = formname.cleaned_data['name']
-        all_users = student.objects.filter(judge=False,name=name)
+        all_users = student.objects.filter(judge=False,name=r'^[name]$')
 
     if formcollege.is_valid()and formcollege.cleaned_data['college'] != '':
         college = formcollege.cleaned_data['college']
