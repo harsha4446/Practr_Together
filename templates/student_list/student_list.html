@@ -99,14 +99,14 @@
   <div class="search-pro">
     <div class="map-search">
       <div class="container">
-        <div class="row">
+        <div class="column">
           <div class="col-md-12">
             <div class="map-toggleButton"> <i class="fa fa-bars"></i> </div>
-            <div class="map-search-fields">
+            <div class="map-search-fields" contentEditable=true data-text="Enter text here">
                 <form method="post" action="">
                     {% csrf_token %}
               <div class="field">
-                {{ name.as_table}}
+              {{ name.as_table }}
               </div>
               <div class="field">
                 {{ email.as_table }}
@@ -114,10 +114,11 @@
               <div class="field custom-select-box">
                 {{ college.as_table }}
               </div>
-              <div class="search-button">
-                <button type="submit">Search</button>
-              </div>
+                   <div class="search-button">   <button>Search</button>
+            </div>
                 </form>
+
+
             </div>
           </div>
         </div>
