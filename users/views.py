@@ -55,5 +55,6 @@ def personal_info(request):
             request.user.year = form.cleaned_data.get("year")
         request.user.save()
         return HttpResponseRedirect('/profile_page/')
-    context = {"form":form}
-    return render(request,'home/Extended_info.html',context)
+    user = request.user
+    context = {"form":form, "user":user,}
+    return render(request,'home/new_studentsetup.html',context)

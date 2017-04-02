@@ -48,7 +48,7 @@ class student(AbstractBaseUser):
     about = models.CharField(max_length=500,default='')
     dob = models.DateField(default=datetime.date.today)
     experience = models.PositiveSmallIntegerField(default=0)
-    location = models.CharField(max_length=100, default='')
+    location = models.CharField(max_length=500, default='')
     degree = models.CharField(max_length=100, default='')
     college = models.CharField(max_length=150, default='')
     year = models.CharField(max_length=10, choices=(('First', 'First'),
