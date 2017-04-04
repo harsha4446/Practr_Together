@@ -18,6 +18,7 @@ class CustomUserManager(BaseUserManager):
         new_user.save(using=self._db)
         return new_user
 
+
     def create_superuser(self, email, password, name, phoneno):
         if not email:
             raise ValueError("No username entered")
@@ -43,6 +44,7 @@ class student(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     activated = models.BooleanField(default=False)
     judge = models.BooleanField(default=False)
+    club = models.BooleanField(default=False)
     designation = models.CharField(max_length=100,default='')
     industry_exp = models.PositiveSmallIntegerField(default=0)
     about = models.CharField(max_length=500,default='')

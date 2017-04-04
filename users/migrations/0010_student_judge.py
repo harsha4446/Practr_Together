@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='student',
-            name='judge',
+            name='judgepage',
             field=models.BooleanField(default=False),
         ),
     ]

@@ -13,4 +13,4 @@ def judge_page(request):
         return HttpResponseRedirect('/user/student_details')
     user = request.user
     context = {'user':user,}
-    return render(request,'judge/judge_page.html',context)
+    return render(request, 'judgepage/judge_page.html', context)

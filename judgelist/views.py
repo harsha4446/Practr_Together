@@ -21,5 +21,5 @@ def judge_list(request):
     if formdesignation.is_valid() and formdesignation.cleaned_data['designation'] != '':
         designation = formdesignation.cleaned_data['designation']
         all_users = student.objects.filter(judge=True, designaiton=designation)
-    context = {"all_users":all_users,}
+    context = {"all_users":all_users,"email":formuser,"name":formname,"designation":formdesignation,}
     return render (request,'judge_list/judge_list.html',context)
